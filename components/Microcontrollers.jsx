@@ -34,15 +34,15 @@ function Microcontrollers() {
           </div>
           
           <nav className="flex gap-4 flex-wrap mt-8">
-            <Link href="#lpc" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:border-primary-300 hover:text-primary-600 hover:shadow-lg transition-all shadow-md flex items-center gap-2">
+            <Link href="#lpc" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-full text-sm font-semibold hover:border-primary-300 hover:text-primary-600 hover:shadow-lg transition-all duration-300 shadow-md flex items-center gap-2 transform hover:-translate-y-0.5 hover:scale-105">
               <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
               LPC1768
             </Link>
-            <Link href="#stm32" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:border-primary-300 hover:text-primary-600 hover:shadow-lg transition-all shadow-md flex items-center gap-2">
+            <Link href="#stm32" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-full text-sm font-semibold hover:border-primary-300 hover:text-primary-600 hover:shadow-lg transition-all duration-300 shadow-md flex items-center gap-2 transform hover:-translate-y-0.5 hover:scale-105">
               <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
               STM32
             </Link>
-            <Link href="#arduino" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:border-primary-300 hover:text-primary-600 hover:shadow-lg transition-all shadow-md flex items-center gap-2">
+            <Link href="#arduino" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-full text-sm font-semibold hover:border-primary-300 hover:text-primary-600 hover:shadow-lg transition-all duration-300 shadow-md flex items-center gap-2 transform hover:-translate-y-0.5 hover:scale-105">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               Arduino
             </Link>

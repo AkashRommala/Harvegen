@@ -79,28 +79,28 @@ function Navbar() {
           {/* CTA BUTTON */}
           <Link
             href="/projects"
-            className="hidden md:inline-block ml-auto px-4 py-2 bg-primary-600 text-white rounded-md text-sm font-semibold hover:bg-primary-700 transition-colors shadow-sm"
+            className="hidden md:inline-block ml-auto px-6 py-3 bg-primary-600 text-white rounded-full text-sm font-semibold hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:ring-2 hover:ring-primary-500/50 transform hover:-translate-y-0.5 hover:scale-105"
           >
-            <FiZap className="inline mr-1" /> Explore Projects
+            <FiZap className="inline mr-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" /> Explore Projects
           </Link>
 
           {/* MOBILE MENU BUTTON */}
           <button
-            className="ml-auto md:hidden flex flex-col gap-1.5"
+            className="ml-auto md:hidden flex flex-col gap-1.5 p-2 rounded-full bg-primary-600 hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <span
-              className={`w-6 h-0.5 bg-white transition ${
+              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
                 mobileOpen ? 'rotate-45 translate-y-2' : ''
               }`}
             />
             <span
-              className={`w-6 h-0.5 bg-white transition ${
+              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
                 mobileOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`w-6 h-0.5 bg-white transition ${
+              className={`w-6 h-0.5 bg-white transition-all duration-300 ${
                 mobileOpen ? '-rotate-45 -translate-y-2' : ''
               }`}
             />
@@ -120,7 +120,7 @@ function Navbar() {
               key={link.path}
               href={link.path}
               onClick={() => setMobileOpen(false)}
-              className="px-4 py-2 rounded text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition"
+              className="px-4 py-2 rounded-full text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
             >
               {link.name}
             </Link>
@@ -129,9 +129,9 @@ function Navbar() {
           <Link
             href="/projects"
             onClick={() => setMobileOpen(false)}
-            className="mt-3 text-center px-4 py-2 bg-primary-600 text-white rounded font-medium hover:bg-primary-700 transition"
+            className="mt-3 text-center px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-105"
           >
-            <FiZap className="inline mr-1" /> Explore Projects
+            <FiZap className="inline mr-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" /> Explore Projects
           </Link>
         </div>
       </div>
