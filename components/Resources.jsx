@@ -96,14 +96,14 @@ function Resources() {
                   image: '/vlsi 2.jpg'
                 }
               ].map((res, i) => (
-                <div key={i} className="flex items-center gap-6 bg-white border border-gray-200 rounded-2xl p-8 hover:border-primary-300 hover:shadow-xl transition-all group">
+                <div key={i} className="flex items-center gap-6 bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-2xl hover:border-primary-500 transition-all group">
                   <div className="w-20 h-20 bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-2xl overflow-hidden flex-shrink-0">
                     <img src={res.image} alt={res.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
-                      <h4 className="font-mono text-lg font-semibold text-gray-900 group-hover:text-primary-700 transition-colors">{res.name}</h4>
-                      <span className="px-3 py-1 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-600 font-mono">{res.meta}</span>
+                      <h4 className="font-bold text-lg text-gray-900 group-hover:text-primary-600 transition-colors">{res.name}</h4>
+                      <span className="px-3 py-1 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-600">{res.meta}</span>
                     </div>
                     <p className="text-gray-600 text-sm mb-4 leading-relaxed">{res.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -162,18 +162,18 @@ function Resources() {
                   image: '/iot3.jpg'
                 }
               ].map((res, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-xl transition-all group">
+                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-2xl hover:border-primary-500 transition-all group">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-2xl overflow-hidden">
                       <img src={res.image} alt={res.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-mono text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">{res.name}</h4>
+                      <h4 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">{res.name}</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">{res.description}</p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-600 font-mono">{res.meta}</span>
+                    <span className="px-3 py-1 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-600">{res.meta}</span>
                     <Button variant="outline" size="sm" className="shadow-sm hover:shadow-md">Download PDF</Button>
                   </div>
                 </div>
@@ -236,19 +236,19 @@ function Resources() {
                   icon: FiTool
                 }
               ].map((tool, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-xl transition-all group">
+                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-2xl hover:border-primary-500 transition-all group">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     <tool.icon className="w-8 h-8 text-primary-600" />
                   </div>
-                  <h4 className="font-mono text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">{tool.name}</h4>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">{tool.name}</h4>
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">{tool.desc}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {tool.features.map((feature, j) => (
-                      <span key={j} className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600 font-mono">{feature}</span>
+                      <span key={j} className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">{feature}</span>
                     ))}
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-primary-600">{tool.badge}</span>
+                    <span className="text-xs text-primary-600 font-medium">{tool.badge}</span>
                     <Button variant="outline" size="sm" className="shadow-sm hover:shadow-md">Get Started</Button>
                   </div>
                 </div>

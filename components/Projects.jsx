@@ -92,7 +92,7 @@ function Projects() {
           {/* Projects Grid */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.map((proj, i) => (
-              <article key={i} className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-primary-300 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+              <article key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300">
                 <div className="h-[200px] bg-gradient-to-br from-primary-50 to-primary-100 shadow-sm flex items-center justify-center overflow-hidden relative">
                   <img src={proj.image} alt={proj.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -111,15 +111,15 @@ function Projects() {
                       }`}>{tag}</span>
                     ))}
                   </div>
-                  <h3 className="font-mono text-lg font-bold text-slate-900 mb-3 group-hover:text-primary-700 transition-colors">{proj.title}</h3>
-                  <p className="text-slate-600 text-sm line-clamp-2 mb-4 leading-relaxed">{proj.desc}</p>
+                  <h3 className="font-bold text-lg text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">{proj.title}</h3>
+                  <p className="text-gray-600 text-sm line-clamp-2 mb-4 leading-relaxed">{proj.desc}</p>
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
-                    <span className="font-mono text-xs text-gray-500">{proj.mcu}</span>
+                    <span className="text-xs text-gray-500">{proj.mcu}</span>
                   </div>
                 </div>
-                <div className="p-6 flex justify-between items-center border-t border-slate-200 bg-slate-50/50">
-                  <span className="font-mono text-xs text-slate-500 font-medium">{proj.tags[1] || proj.tags[0]}</span>
+                <div className="p-6 flex justify-between items-center border-t border-gray-100 bg-gray-50/50">
+                  <span className="text-xs text-gray-500 font-medium">{proj.tags[1] || proj.tags[0]}</span>
                   <Button variant="outline" size="sm" onClick={() => toast('Full article coming soon!', 'info')} className="shadow-sm hover:shadow-md">View Details</Button>
                 </div>
               </article>

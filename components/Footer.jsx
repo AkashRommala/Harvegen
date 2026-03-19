@@ -4,7 +4,7 @@ import { FaGithub, FaYoutube, FaTwitter, FaLinkedin } from 'react-icons/fa'
 
 function Footer() {
   return (
-    <footer className="bg-primary-700 pt-16 pb-6">
+    <footer className="bg-[#1e3a8a] pt-16 pb-6">
       {/* Main Footer Content */}
       <div className="max-w-[1160px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">

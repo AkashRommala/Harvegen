@@ -112,7 +112,7 @@ function Tutorials() {
           {/* Tutorial Cards */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {tutorials[activeTab].map((tut, i) => (
-              <Link href="/tutorials" key={i} className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-primary-300 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 no-underline">
+              <Link href="/tutorials" key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 no-underline">
                 <div className="h-[200px] bg-gradient-to-br from-primary-50 to-primary-100 shadow-sm flex items-center justify-center overflow-hidden relative">
                   <img src={tut.image} alt={tut.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -121,16 +121,16 @@ function Tutorials() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="font-mono text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors line-clamp-2">{tut.title}</h3>
+                  <h3 className="font-bold text-lg text-gray-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">{tut.title}</h3>
                   <p className="text-gray-600 text-sm line-clamp-2 mb-4 leading-relaxed">{tut.desc}</p>
                   <div className="flex gap-4 items-center text-sm text-gray-500">
                     <span className="flex items-center gap-1">
                       <span className="text-primary-500">⏱</span> {tut.time}
                     </span>
                     <span className={`px-3 py-1.5 rounded-lg font-mono text-xs font-bold tracking-wider uppercase ${
-                      tut.level === 'Beginner' ? 'text-emerald-700 border-emerald-200 bg-emerald-50' : 
-                      tut.level === 'Intermediate' ? 'text-amber-700 border-amber-200 bg-amber-50' : 
-                      'text-red-700 border-red-200 bg-red-50'
+                      tut.level === 'Beginner' ? 'text-emerald-700 border border-emerald-200 bg-emerald-50' : 
+                      tut.level === 'Intermediate' ? 'text-amber-700 border border-amber-200 bg-amber-50' : 
+                      'text-red-700 border border-red-200 bg-red-50'
                     }`}>{tut.level}</span>
                   </div>
                 </div>

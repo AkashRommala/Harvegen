@@ -1,7 +1,5 @@
 'use client'
 
-'use client'
-
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -20,6 +18,7 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -32,7 +31,9 @@ function Navbar() {
       {/* NAVBAR */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-          scrolled
+          isHomePage && !scrolled
+            ? 'bg-transparent border-none'
+            : scrolled
             ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-card'
             : 'bg-white/80 backdrop-blur-sm border-b border-gray-100'
         }`}
@@ -40,12 +41,16 @@ function Navbar() {
         <div className="flex items-center h-[64px] max-w-[1200px] mx-auto px-6">
 
           {/* LOGO */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-gray-900">
-            <div className="w-8 h-8 bg-primary-600 rounded-md flex items-center justify-center text-white font-bold">
+          <Link href="/" className={`flex items-center gap-2 font-bold ${
+            isHomePage && !scrolled ? 'text-white' : 'text-gray-900'
+          }`}>
+            <div className={`w-8 h-8 rounded-md flex items-center justify-center text-white font-bold ${
+              isHomePage && !scrolled ? 'bg-white/20 backdrop-blur-sm' : 'bg-primary-600'
+            }`}>
               <FiZap className="w-5 h-5" />
             </div>
             <span className="text-lg font-semibold">
-              Har<span className="text-primary-600">vegen</span>
+              Harvegen
             </span>
           </Link>
 
@@ -59,16 +64,18 @@ function Navbar() {
                   href={link.path}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors ${
                     active
-                      ? 'text-primary-600'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? isHomePage && !scrolled ? 'text-primary-400' : 'text-primary-600'
+                      : isHomePage && !scrolled ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   {link.name}
 
                   {/* Underline animation */}
                   <span
-                    className={`absolute left-0 bottom-0 h-0.5 bg-primary-600 transition-all duration-300 ${
-                      active ? 'w-full' : 'w-0 group-hover:w-full'
+                    className={`absolute left-0 bottom-0 h-0.5 transition-all duration-300 ${
+                      active 
+                        ? isHomePage && !scrolled ? 'bg-primary-400 w-full' : 'bg-primary-600 w-full'
+                        : 'w-0 group-hover:w-full'
                     }`}
                   />
                 </Link>
@@ -79,14 +86,22 @@ function Navbar() {
           {/* CTA BUTTON */}
           <Link
             href="/projects"
-            className="hidden md:inline-block ml-auto px-6 py-3 bg-primary-600 text-white rounded-full text-sm font-semibold hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:ring-2 hover:ring-primary-500/50 transform hover:-translate-y-0.5 hover:scale-105"
+            className={`hidden md:inline-block ml-auto px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:ring-2 transform hover:-translate-y-0.5 hover:scale-105 ${
+              isHomePage && !scrolled 
+                ? 'bg-white text-primary-600 hover:bg-white/90 hover:ring-white/50' 
+                : 'bg-primary-600 text-white hover:bg-primary-700 hover:ring-primary-500/50'
+            }`}
           >
             <FiZap className="inline mr-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" /> Explore Projects
           </Link>
 
           {/* MOBILE MENU BUTTON */}
           <button
-            className="ml-auto md:hidden flex flex-col gap-1.5 p-2 rounded-full bg-primary-600 hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className={`ml-auto md:hidden flex flex-col gap-1.5 p-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 ${
+              isHomePage && !scrolled 
+                ? 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30' 
+                : 'bg-primary-600 text-white hover:bg-primary-700'
+            }`}
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <span

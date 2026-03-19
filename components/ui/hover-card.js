@@ -26,7 +26,7 @@ export function HoverCard({
       
       {isOpen && (
         <div 
-          className={`absolute z-50 w-64 p-4 bg-white border border-gray-200 rounded-lg shadow-lg animate-in fade-in-0 zoom-in-95 duration-200 ${
+          className={`absolute z-50 w-64 p-4 bg-white border border-gray-200 rounded-xl shadow-xl animate-in fade-in-0 zoom-in-95 duration-200 ${
             side === 'top' ? 'bottom-full mb-2' : 
             side === 'bottom' ? 'top-full mt-2' : 
             side === 'left' ? 'right-full mr-2' : 'left-full ml-2'
