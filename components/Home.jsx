@@ -72,7 +72,6 @@ function Home() {
               <h2 className="text-gray-900 mb-4 text-4xl font-bold">Featured Projects</h2>
               <p className="text-gray-600 text-lg leading-relaxed">Curated projects that build real-world embedded systems skills from the ground up.</p>
             </div>
-            <Link href="/projects" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:border-gray-300 hover:text-gray-900 hover:shadow-lg transition-all shadow-md">All Projects →</Link>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -101,6 +100,13 @@ function Home() {
                 </div>
               </article>
             ))}
+          </div>
+
+          {/* All Projects Button */}
+          <div className="mt-12 flex justify-center">
+            <Button href="/projects" variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-gray-100 shadow-lg hover:shadow-xl px-8 py-4 text-base md:text-lg">
+              All Projects →
+            </Button>
           </div>
         </div>
       </section>

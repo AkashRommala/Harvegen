@@ -7,35 +7,21 @@ function Footer() {
     <footer className="bg-[#1e3a8a] pt-16 pb-6">
       {/* Main Footer Content */}
       <div className="max-w-[1160px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          
-          {/* Brand & Newsletter */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 font-bold text-[1rem] text-white no-underline mb-4">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-primary-700">
-                <FiZap className="w-5 h-5" />
-              </div>
-              <span className="text-white">EPHub</span>
-            </Link>
-            <p className="text-white/80 text-sm mb-5 leading-relaxed">
-              Open-source embedded systems learning platform for engineers, by engineers.
-            </p>
-            <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
-                <FaGithub className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
-                <FaYoutube className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
-                <FaTwitter className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
-                <FaLinkedin className="w-4 h-4" />
-              </a>
+        {/* Row 1: Logo & Description (full width on mobile) */}
+        <div className="mb-10">
+          <Link href="/" className="flex items-center gap-2.5 font-bold text-[1rem] text-white no-underline mb-4">
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-primary-700">
+              <FiZap className="w-5 h-5" />
             </div>
-          </div>
+            <span className="text-white">EPHub</span>
+          </Link>
+          <p className="text-white/80 text-sm leading-relaxed max-w-md">
+            Open-source embedded systems learning platform for engineers, by engineers.
+          </p>
+        </div>
 
+        {/* Row 2: Three columns - Projects, Learn, Contact */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 mb-12">
           {/* Projects */}
           <div>
             <h5 className="font-semibold text-sm tracking-wider uppercase text-white mb-5">Projects</h5>
@@ -58,13 +44,13 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact & Social */}
           <div>
             <h5 className="font-semibold text-sm tracking-wider uppercase text-white mb-5">Contact</h5>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 mb-4">
               <li className="flex items-center gap-2 text-white/70 text-sm">
                 <FiMail className="w-4 h-4" />
-                hello@ephub.dev
+                info@harvegen.com
               </li>
               <li className="flex items-center gap-2 text-white/70 text-sm">
                 <FiMapPin className="w-4 h-4" />
@@ -77,6 +63,21 @@ function Footer() {
         </div>
 
         {/* Bottom Bar */}
+            {/* Social Media Links */}
+            <div className="flex gap-3 mb-4">
+              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
+                <FaGithub className="w-4 h-4" />
+              </a>
+              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
+                <FaYoutube className="w-4 h-4" />
+              </a>
+              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
+                <FaTwitter className="w-4 h-4" />
+              </a>
+              <a href="#" className="w-9 h-9 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-primary-700 transition-all">
+                <FaLinkedin className="w-4 h-4" />
+              </a>
+            </div>
         <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-white/20 gap-4 text-sm text-white/60">
           <span>© 2025 Embedded Projects Hub — MIT Licensed</span>
           <span className="flex items-center gap-1">

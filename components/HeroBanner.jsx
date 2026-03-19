@@ -153,7 +153,7 @@ export default function HeroBanner() {
               href={current.secondaryLink} 
               variant="secondary" 
               size="lg"
-              className="bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20 hover:border-white/50 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+              className="bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20 hover:border-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
             >
               {current.secondaryCta}
             </Button>
