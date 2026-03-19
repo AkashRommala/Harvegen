@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { Button } from './ui/button'
 
 function Microcontrollers() {
   return (
@@ -33,7 +34,9 @@ function Microcontrollers() {
         <section id="lpc" className="py-15">
           <div className="max-w-[1160px] mx-auto px-6">
             <div className="flex items-center gap-4 mb-7">
-              <div className="w-14 h-14 bg-teal-500/10 border border-teal-500/25 rounded-xl flex items-center justify-center text-3xl shrink-0"><FiCpu className="w-7 h-7 text-teal-500" /></div>
+                <div className="w-14 h-14 bg-teal-500/10 border border-teal-500/25 rounded-xl overflow-hidden">
+                  <img src="/vlsi2.jpg" alt="LPC1768" className="w-full h-full object-cover" />
+                </div>
               <div>
                 <h2 className="text-slate-100">LPC1768 — NXP ARM Cortex-M3</h2>
                 <p className="text-slate-400 text-[0.88rem]">32-bit Cortex-M3 at 100 MHz. Bare-metal register-level programming powerhouse.</p>
@@ -93,7 +96,7 @@ function Microcontrollers() {
                       <p className="text-slate-400 text-[0.82rem] mb-3">{proj.desc}</p>
                       <div className="flex justify-between items-center">
                         <span className="font-mono text-[0.7rem] text-slate-500">{proj.mcu}</span>
-                        <button className="px-4 py-1.5 bg-transparent text-blue-500 border border-blue-500 rounded text-[0.72rem] font-mono hover:bg-blue-500/10 transition-all">View</button>
+                        <Button variant="outline" size="sm">View</Button>
                       </div>
                     </article>
                   ))}
@@ -162,7 +165,7 @@ function Microcontrollers() {
                       <p className="text-slate-400 text-[0.82rem] mb-3">{proj.desc}</p>
                       <div className="flex justify-between items-center">
                         <span className="font-mono text-[0.7rem] text-slate-500">{proj.mcu}</span>
-                        <button className="px-4 py-1.5 bg-transparent text-blue-500 border border-blue-500 rounded text-[0.72rem] font-mono hover:bg-blue-500/10 transition-all">View</button>
+                        <Button variant="outline" size="sm">View</Button>
                       </div>
                     </article>
                   ))}
@@ -231,7 +234,7 @@ function Microcontrollers() {
                       <p className="text-slate-400 text-[0.82rem] mb-3">{proj.desc}</p>
                       <div className="flex justify-between items-center">
                         <span className="font-mono text-[0.7rem] text-slate-500">{proj.mcu}</span>
-                        <button className="px-4 py-1.5 bg-transparent text-blue-500 border border-blue-500 rounded text-[0.72rem] font-mono hover:bg-blue-500/10 transition-all">View</button>
+                        <Button variant="outline" size="sm">View</Button>
                       </div>
                     </article>
                   ))}

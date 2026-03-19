@@ -2,6 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { Card, CardContent, CardTitle, CardDescription } from './ui/card'
+import { Button, ButtonGroup } from './ui/button'
+import { Badge } from './ui/badge'
+import { TutorialImage } from './ui/image'
 
 // Toast helper
 const toast = (msg, type = 'info') => {
@@ -11,7 +15,7 @@ const toast = (msg, type = 'info') => {
     el.id = 'toast'
     document.body.appendChild(el)
   }
-  const icons = { info: 'ℹ️', success: '✅', warn: '⚠️', error: '❌' }
+  const icons = { info: '', success: '', warn: '', error: '' }
   el.innerHTML = `${icons[type] || icons.info} <span>${msg}</span>`
   el.classList.add('show')
   clearTimeout(el._t)
@@ -77,13 +81,14 @@ function Tutorials() {
               { id: 'proto', label: 'Protocols' },
               { id: 'rtos', label: 'RTOS' },
             ].map(tab => (
-              <button
+              <Button
                 key={tab.id}
-                className={`px-4 py-2 rounded font-mono text-[0.75rem] transition-all ${activeTab === tab.id ? 'bg-blue-500 text-slate-900' : 'bg-transparent text-slate-400 hover:text-slate-200 hover:bg-white/5'}`}
+                variant={activeTab === tab.id ? 'default' : 'ghost'}
+                size="sm"
                 onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -91,8 +96,8 @@ function Tutorials() {
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {tutorials[activeTab].map((tut, i) => (
               <Link href="/tutorials" key={i} className="bg-white border border-slate-200 rounded-xl p-6 hover:border-slate-300 hover:-translate-y-0.5 hover:shadow-xl transition-all no-underline">
-                <div className="w-full h-32 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-4 flex items-center justify-center text-4xl shadow-sm">
-                  {tut.icon}
+                <div className="w-full h-32 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-4 overflow-hidden">
+                  <img src="/vlsi1.jpeg" alt={tut.title} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="font-mono text-[0.95rem] font-semibold text-slate-900 mb-2">{tut.title}</h3>
                 <p className="text-slate-600 text-[0.82rem] line-clamp-2 mb-3 leading-relaxed">{tut.desc}</p>
@@ -121,8 +126,8 @@ function Tutorials() {
             <h2 className="text-slate-100 mb-2">Learn by Building</h2>
             <p className="text-slate-400 mx-auto mb-6 max-w-[480px]">Each tutorial is linked to a real project. Grab the code and start soldering.</p>
             <div className="flex gap-3 justify-center flex-wrap">
-              <Link href="/projects" className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded font-mono text-[0.78rem] font-medium hover:from-blue-400 hover:to-blue-500 transition-all shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-0.5">⚙ Browse Projects</Link>
-              <Link href="/resources" className="px-5 py-2.5 bg-transparent text-blue-500 border border-blue-500 rounded font-mono text-[0.78rem] font-medium hover:bg-blue-500/10 transition-all">📥 Get Source Code</Link>
+              <Button href="/projects" variant="default" size="default" icon="arrowRight">Browse Projects</Button>
+              <Button href="/resources" variant="outline" size="default" icon="download">Get Source Code</Button>
             </div>
           </div>
         </div>
