@@ -113,12 +113,8 @@ function Tutorials() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {tutorials[activeTab].map((tut, i) => (
               <Link href="/tutorials" key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 no-underline">
-                <div className="h-[200px] bg-gradient-to-br from-primary-50 to-primary-100 shadow-sm flex items-center justify-center overflow-hidden relative">
-                  <img src={tut.image} alt={tut.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className=" bg-gradient-to-br from-primary-50 to-primary-100 shadow-sm flex items-center justify-center overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm border border-primary-200 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <tut.icon className="w-6 h-6 text-primary-600" />
-                  </div>
                 </div>
                 <div className="p-6">
                   <h3 className="font-bold text-lg text-gray-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">{tut.title}</h3>

@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'Projects', path: '/projects' },
   { name: 'MCUs', path: '/microcontrollers' },
   { name: 'Resources', path: '/resources' },
+  { name: 'Profile', path: '/profile' },
   { name: 'About', path: '/about' },
 ]
 

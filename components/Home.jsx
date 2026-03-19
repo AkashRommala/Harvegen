@@ -42,7 +42,7 @@ function Home() {
       {/* Hero Banner Component */}
       <HeroBanner />
 
-      {/* Feature Strip */}
+      {/* Feature Strip
       <div className="max-w-[1160px] mx-auto px-6 pb-0">
         <div className="flex flex-wrap bg-white border border-gray-200 rounded-lg overflow-hidden shadow-card">
           {[{ icon: FiCpu, val: 'ARM', lbl: 'Cortex-M4 Core' },
@@ -58,10 +58,10 @@ function Home() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Featured Projects */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-slate-50">
+      <section className="py-15 bg-gradient-to-br from-gray-50 to-slate-50">
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="flex justify-between items-end mb-16">
             <div className="max-w-2xl">
@@ -103,8 +103,8 @@ function Home() {
           </div>
 
           {/* All Projects Button */}
-          <div className="mt-12 flex justify-center">
-            <Button href="/projects" variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-gray-100 shadow-lg hover:shadow-xl px-8 py-4 text-base md:text-lg">
+          <div className="mt-6 mb-4 flex justify-end">
+            <Button href="/projects" variant="secondary" size="md" className="bg-white text-primary-600 hover:bg-gray-100 shadow-lg hover:shadow-xl px-4 py-2 text-base md:text-lg">
               All Projects →
             </Button>
           </div>
@@ -112,7 +112,7 @@ function Home() {
       </section>
 
       {/* Latest Tutorials */}
-      <section className="py-24 bg-gradient-to-br from-white to-slate-50">
+      <section className="py-15 bg-gradient-to-br from-white to-slate-50">
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="flex justify-between items-end mb-16">
             <div className="max-w-2xl">
@@ -120,10 +120,10 @@ function Home() {
                 <span className="w-8 h-px bg-primary-600"></span>
                 Learning Path
               </div>
-              <h2 className="text-gray-900 mb-4 text-4xl font-bold">Latest Tutorials</h2>
+              <h2 className="text-gray-900 mb-4 text-4xl font-bold">Latest Courses</h2>
               <p className="text-gray-600 text-lg leading-relaxed">Step-by-step guides from register-level basics to production RTOS patterns.</p>
             </div>
-            <Link href="/tutorials" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:border-gray-300 hover:text-gray-900 hover:shadow-lg transition-all shadow-md">All Tutorials →</Link>
+            <Link href="/tutorials" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:border-gray-300 hover:text-gray-900 hover:shadow-lg transition-all shadow-md">All Courses →</Link>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
