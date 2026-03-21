@@ -177,3 +177,17 @@
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
 }
+
+/* Hide footer and bottom nav on tutorial detail pages */
+.tutorial-page + footer,
+.tutorial-page ~ footer,
+body:has(.tutorial-page) footer,
+.tutorial-page + * + footer,
+body:has(.tutorial-page) + footer {
+  display: none !important;
+}
+
+.tutorial-page + * + #bottom-nav,
+body:has(.tutorial-page) #bottom-nav {
+  display: none !important;
+}

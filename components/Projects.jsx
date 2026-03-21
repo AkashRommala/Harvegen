@@ -29,9 +29,15 @@ function Projects() {
 
   const projects = [
     { title: 'Smart Irrigation System', desc: 'ADC reads sensor data, relay controls the pump, UART logs to a cloud dashboard via ESP8266.', tags: ['intermediate', 'stm32', 'iot'], mcu: 'STM32F407VGT6', icon: FiZap, color: 'bg-emerald-900', image: '/iot.jpeg' },
+    { title: 'Smart Irrigation System', desc: 'ADC reads sensor data, relay controls the pump, UART logs to a cloud dashboard via ESP8266.', tags: ['intermediate', 'stm32', 'iot'], mcu: 'STM32F407VGT6', icon: FiZap, color: 'bg-emerald-900', image: '/iot.jpeg' },
+    { title: 'Driver Drowsiness Detection', desc: 'IR sensor array detects eye blink patterns. Pattern recognition algorithm triggers audio-visual alert.', tags: ['advanced', 'lpc'], mcu: 'LPC1768 ARM M3', icon: FiTarget, color: 'bg-red-900', image: '/vlsi1.jpeg' },
+    { title: 'Driver Drowsiness Detection', desc: 'IR sensor array detects eye blink patterns. Pattern recognition algorithm triggers audio-visual alert.', tags: ['advanced', 'lpc'], mcu: 'LPC1768 ARM M3', icon: FiTarget, color: 'bg-red-900', image: '/vlsi1.jpeg' },
+    { title: 'Driver Drowsiness Detection', desc: 'IR sensor array detects eye blink patterns. Pattern recognition algorithm triggers audio-visual alert.', tags: ['advanced', 'lpc'], mcu: 'LPC1768 ARM M3', icon: FiTarget, color: 'bg-red-900', image: '/vlsi1.jpeg' },
     { title: 'Driver Drowsiness Detection', desc: 'IR sensor array detects eye blink patterns. Pattern recognition algorithm triggers audio-visual alert.', tags: ['advanced', 'lpc'], mcu: 'LPC1768 ARM M3', icon: FiTarget, color: 'bg-red-900', image: '/vlsi1.jpeg' },
     { title: 'IoT Weather Station', desc: 'DHT22 + BMP280 sensor fusion. ESP8266 uploads to Blynk dashboard in real time.', tags: ['beginner', 'arduino', 'iot'], mcu: 'Arduino Uno + ESP8266', icon: FiGlobe, color: 'bg-slate-800', image: '/iot2.jpg' },
+    { title: 'IoT Weather Station', desc: 'DHT22 + BMP280 sensor fusion. ESP8266 uploads to Blynk dashboard in real time.', tags: ['beginner', 'arduino', 'iot'], mcu: 'Arduino Uno + ESP8266', icon: FiGlobe, color: 'bg-slate-800', image: '/iot2.jpg' },
     { title: 'Line Follower Robot', desc: 'IR sensor array reads a black line path. PID controller calculates motor corrections.', tags: ['intermediate', 'arduino'], mcu: 'Arduino Nano', icon: FiCpu, color: 'bg-slate-800', image: '/iot3.jpg' },
+    { title: 'Autonomous Rover', desc: 'Ultrasonic + IR obstacle avoidance with FreeRTOS task management.', tags: ['advanced', 'stm32'], mcu: 'STM32F411 + FreeRTOS', icon: FiLayers, color: 'bg-indigo-900', image: '/vlsi 2.jpg' },
     { title: 'Autonomous Rover', desc: 'Ultrasonic + IR obstacle avoidance with FreeRTOS task management.', tags: ['advanced', 'stm32'], mcu: 'STM32F411 + FreeRTOS', icon: FiLayers, color: 'bg-indigo-900', image: '/vlsi 2.jpg' },
     { title: 'Mini Digital Oscilloscope', desc: 'High-speed ADC at 1MSPS with DMA. Waveform rendering on ST7735 TFT.', tags: ['advanced', 'stm32'], mcu: 'STM32F4 + TFT', icon: FiRadio, color: 'bg-slate-800', image: '/vlsi 2.jpeg' },
   ]
@@ -96,9 +102,6 @@ function Projects() {
                 <div className="h-[200px] bg-gradient-to-br from-primary-50 to-primary-100 shadow-sm flex items-center justify-center overflow-hidden relative">
                   <img src={proj.image} alt={proj.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm border border-primary-200 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <proj.icon className="w-6 h-6 text-primary-600" />
-                  </div>
                 </div>
                 <div className="p-6 pb-0">
                   <div className="flex gap-2 flex-wrap mb-3">

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { FiSettings, FiBookOpen, FiCpu, FiGlobe, FiRadio, FiLayers, FiDownload, FiClock, FiTarget } from 'react-icons/fi'
+import { FiSettings, FiBookOpen, FiCpu, FiGlobe, FiRadio, FiLayers, FiDownload, FiClock, FiTarget, FiCode } from 'react-icons/fi'
 import { Card, CardContent, CardTitle, CardDescription } from './ui/card'
 import { Button, ButtonGroup } from './ui/button'
 import { Badge } from './ui/badge'
@@ -24,32 +24,84 @@ const toast = (msg, type = 'info') => {
 }
 
 function Tutorials() {
-  const [activeTab, setActiveTab] = useState('all')
+  const [activeTab, setActiveTab] = useState('c')
 
   const tutorials = {
     all: [
-      { title: 'Introduction to Embedded C', desc: 'Data types, bitwise operations, memory layout and direct hardware register access.', time: '20 min', level: 'Beginner', icon: FiBookOpen, image: '/vlsi 2.jpeg' },
-      { title: 'GPIO: Input, Output & EXTI Interrupts', desc: 'Configure digital I/O, pull-up resistors, debounce, and external interrupt lines on STM32.', time: '25 min', level: 'Beginner', icon: FiSettings, image: '/iot3.jpg' },
-      { title: 'Timers & PWM Generation', desc: 'Timer modes, prescaler, ARR. Generate PWM for LED dimming and motor speed control.', time: '30 min', level: 'Intermediate', icon: FiClock, image: '/vlsi1.jpeg' },
-      { title: 'UART: From Config to Circular Buffers', desc: 'Set baud rate, interrupt RX, ring buffer, and serial debugging on LPC1768 and STM32.', time: '35 min', level: 'Intermediate', icon: FiRadio, image: '/vlsi 2.jpg' },
-      { title: 'FreeRTOS: Tasks & Scheduling', desc: 'Create tasks, understand preemptive scheduling, priorities, and the tick timer.', time: '50 min', level: 'Advanced', icon: FiLayers, image: '/iot2.jpg' },
-      { title: 'DMA: Zero-CPU Peripheral Transfers', desc: 'Configure DMA for UART, ADC, and SPI to maximise MCU throughput without polling.', time: '45 min', level: 'Advanced', icon: FiDownload, image: '/iot.jpeg' },
+      { title: 'Introduction to Embedded C', desc: 'Data types, bitwise operations, memory layout and direct hardware register access.', time: '20 min', level: 'Beginner', icon: FiBookOpen, image: '/vlsi 2.jpeg', slug: 'introduction-to-embedded-c' },
+      { title: 'GPIO: Input, Output & EXTI Interrupts', desc: 'Configure digital I/O, pull-up resistors, debounce, and external interrupt lines on STM32.', time: '25 min', level: 'Beginner', icon: FiSettings, image: '/iot3.jpg', slug: 'gpio-input-output-exti-interrupts' },
+      { title: 'Timers & PWM Generation', desc: 'Timer modes, prescaler, ARR. Generate PWM for LED dimming and motor speed control.', time: '30 min', level: 'Intermediate', icon: FiClock, image: '/vlsi1.jpeg', slug: 'timers-pwm-generation' },
+      { title: 'UART: From Config to Circular Buffers', desc: 'Set baud rate, interrupt RX, ring buffer, and serial debugging on LPC1768 and STM32.', time: '35 min', level: 'Intermediate', icon: FiRadio, image: '/vlsi 2.jpg', slug: 'uart-from-config-to-circular-buffers' },
+      { title: 'FreeRTOS: Tasks & Scheduling', desc: 'Create tasks, understand preemptive scheduling, priorities, and the tick timer.', time: '50 min', level: 'Advanced', icon: FiLayers, image: '/iot2.jpg', slug: 'freertos-tasks-scheduling' },
+      { title: 'DMA: Zero-CPU Peripheral Transfers', desc: 'Configure DMA for UART, ADC, and SPI to maximise MCU throughput without polling.', time: '45 min', level: 'Advanced', icon: FiDownload, image: '/iot.jpeg', slug: 'dma-zero-cpu-peripheral-transfers' },
     ],
     c: [
-      { title: 'Introduction to Embedded C', desc: 'Data types, bitwise operations, memory layout and direct hardware register access.', time: '20 min', level: 'Beginner', icon: FiBookOpen, image: '/vlsi 2.jpeg' },
-      { title: 'Pointers & Memory in Embedded C', desc: 'Stack vs heap, volatile keyword, const correctness, and memory-mapped registers.', time: '30 min', level: 'Intermediate', icon: FiTarget, image: '/vlsi 2.jpg' },
+      { title: 'Introduction to Embedded C', desc: 'Data types, bitwise operations, memory layout and direct hardware register access.', time: '20 min', level: 'Beginner', icon: FiBookOpen, image: '/vlsi 2.jpeg', slug: 'introduction-to-embedded-c' },
+      { title: 'Pointers & Memory in Embedded C', desc: 'Stack vs heap, volatile keyword, const correctness, and memory-mapped registers.', time: '30 min', level: 'Intermediate', icon: FiTarget, image: '/vlsi 2.jpg', slug: 'pointers-memory-embedded-c' },
+      { title: 'Bitwise Operations Deep Dive', desc: 'AND, OR, XOR, shifts, bit masking techniques for register configuration.', time: '25 min', level: 'Beginner', icon: FiSettings, image: '/iot3.jpg', slug: 'bitwise-operations-deep-dive' },
+      { title: 'Structures & Unions in Embedded Systems', desc: 'Pack alignment, bit-fields, and creating register maps with structures.', time: '35 min', level: 'Intermediate', icon: FiLayers, image: '/vlsi1.jpeg', slug: 'structures-unions-embedded' },
+      { title: 'Interrupt Handling & ISR Design', desc: 'Writing interrupt service routines, context saving, and critical sections.', time: '40 min', level: 'Advanced', icon: FiCpu, image: '/iot.jpeg', slug: 'interrupt-handling-isr-design' },
+      { title: 'Memory Management in Embedded', desc: 'Flash, SRAM, EEPROM usage, linker scripts, and memory optimization.', time: '45 min', level: 'Advanced', icon: FiDownload, image: '/iot2.jpg', slug: 'memory-management-embedded' },
+      { title: 'Preprocessor Directives & Macros', desc: '#define, #ifdef, inline functions, and creating efficient macros.', time: '25 min', level: 'Beginner', icon: FiCode, image: '/vlsi 2.jpeg', slug: 'preprocessor-directives-macros' },
+      { title: 'Fixed-Point Arithmetic', desc: 'Q format, scaling, and implementing DSP algorithms without FPU.', time: '40 min', level: 'Advanced', icon: FiTarget, image: '/iot3.jpg', slug: 'fixed-point-arithmetic' },
+      { title: 'Error Handling & Asserts', desc: 'Debug assertions, error codes, and writing robust firmware.', time: '20 min', level: 'Beginner', icon: FiSettings, image: '/vlsi1.jpeg', slug: 'error-handling-asserts' },
+      { title: 'Code Optimization Techniques', desc: 'Loop unrolling, function inlining, and reducing code size.', time: '35 min', level: 'Intermediate', icon: FiLayers, image: '/iot.jpeg', slug: 'code-optimization-techniques' },
+      { title: 'Linker Scripts & Memory Maps', desc: 'Understanding linker scripts, sections, and memory layout.', time: '45 min', level: 'Advanced', icon: FiDownload, image: '/iot2.jpg', slug: 'linker-scripts-memory-maps' },
+      { title: 'Startup Code & Boot Process', desc: 'Reset handler, vector table, and initializing variables before main.', time: '40 min', level: 'Advanced', icon: FiCpu, image: '/vlsi 2.jpg', slug: 'startup-code-boot-process' },
+      { title: 'Writing Clean Embedded C', desc: 'Naming conventions, code organization, and best practices.', time: '30 min', level: 'Beginner', icon: FiBookOpen, image: '/iot3.jpg', slug: 'writing-clean-embedded-c' },
+      { title: 'Unit Testing for Embedded', desc: 'Unity test framework, mocking hardware, and TDD for firmware.', time: '50 min', level: 'Intermediate', icon: FiTarget, image: '/vlsi1.jpeg', slug: 'unit-testing-embedded' },
+      { title: 'Debugging with GDB & OpenOCD', desc: 'JTAG debugging, breakpoints, and inspecting memory.', time: '45 min', level: 'Intermediate', icon: FiSettings, image: '/iot.jpeg', slug: 'debugging-gdb-openocd' },
     ],
     basics: [
-      { title: 'GPIO: Input, Output & Interrupts', desc: 'Configure GPIO, debounce switches, and set up external interrupts on STM32.', time: '25 min', level: 'Beginner', icon: FiSettings, image: '/iot3.jpg' },
-      { title: 'Timers & PWM Generation', desc: 'Timer modes, prescaler, ARR. Generate PWM for LED dimming and motor control.', time: '30 min', level: 'Intermediate', icon: FiClock, image: '/vlsi1.jpeg' },
+      { title: 'GPIO: Input, Output & Interrupts', desc: 'Configure GPIO, debounce switches, and set up external interrupts on STM32.', time: '25 min', level: 'Beginner', icon: FiSettings, image: '/iot3.jpg', slug: 'gpio-input-output-exti-interrupts' },
+      { title: 'Timers & PWM Generation', desc: 'Timer modes, prescaler, ARR. Generate PWM for LED dimming and motor control.', time: '30 min', level: 'Intermediate', icon: FiClock, image: '/vlsi1.jpeg', slug: 'timers-pwm-generation' },
+      { title: 'ADC: Analog-to-Digital Conversion', desc: 'ADC configuration, sampling rates, DMA-based acquisition and sensor interfacing.', time: '35 min', level: 'Intermediate', icon: FiCpu, image: '/vlsi 2.jpeg', slug: 'adc-analog-to-digital-conversion' },
+      { title: 'Watchdog Timer Implementation', desc: 'IWDG and WWDG configuration, preventing system lockups in critical applications.', time: '25 min', level: 'Intermediate', icon: FiTarget, image: '/iot2.jpg', slug: 'watchdog-timer-implementation' },
+      { title: 'Clock Configuration & PLL Setup', desc: 'HSE, HSI, PLL configuration for optimal MCU performance and power management.', time: '40 min', level: 'Advanced', icon: FiLayers, image: '/iot.jpeg', slug: 'clock-configuration-pll-setup' },
+      { title: 'Low Power Modes & Sleep', desc: 'Sleep, Stop, and Standby modes for battery-powered embedded applications.', time: '45 min', level: 'Advanced', icon: FiDownload, image: '/vlsi 2.jpg', slug: 'low-power-modes-sleep' },
+      { title: 'RTC: Real-Time Clock', desc: 'Calendar functions, alarms, and time-stamping applications.', time: '35 min', level: 'Intermediate', icon: FiClock, image: '/iot3.jpg', slug: 'rtc-real-time-clock' },
+      { title: 'Comparator & Op-Amp Config', desc: 'Internal comparator, window detectors, and analog signal processing.', time: '30 min', level: 'Intermediate', icon: FiCpu, image: '/vlsi1.jpeg', slug: 'comparator-opamp-config' },
+      { title: 'GPIO Interfacing Basics', desc: 'LED, button, and switch interfacing with pull-up/down resistors.', time: '20 min', level: 'Beginner', icon: FiSettings, image: '/iot.jpeg', slug: 'gpio-interfacing-basics' },
+      { title: 'PWM Motor Control', desc: 'H-bridge drivers, direction control, and speed regulation.', time: '40 min', level: 'Intermediate', icon: FiLayers, image: '/iot2.jpg', slug: 'pwm-motor-control' },
+      { title: 'Input Capture & Encoders', desc: 'Reading rotary encoders, measuring frequency and pulse width.', time: '35 min', level: 'Intermediate', icon: FiTarget, image: '/vlsi 2.jpeg', slug: 'input-capture-encoders' },
+      { title: 'DAC: Digital-to-Analog Output', desc: 'DAC configuration, waveform generation, and audio output.', time: '30 min', level: 'Intermediate', icon: FiGlobe, image: '/iot3.jpg', slug: 'dac-digital-analog-output' },
+      { title: 'Backup Domain & VBAT', desc: 'RTC backup registers and battery backup power management.', time: '25 min', level: 'Intermediate', icon: FiDownload, image: '/vlsi1.jpeg', slug: 'backup-domain-vbat' },
+      { title: 'System Configuration & Boot', desc: 'Boot modes, option bytes, and system configuration.', time: '35 min', level: 'Advanced', icon: FiCpu, image: '/iot.jpeg', slug: 'system-configuration-boot' },
+      { title: 'Hardware Debugging Tips', desc: 'Common hardware issues, debugging tips, and oscilloscope basics.', time: '40 min', level: 'Beginner', icon: FiSettings, image: '/iot2.jpg', slug: 'hardware-debugging-tips' },
     ],
     proto: [
-      { title: 'UART: Complete Guide', desc: 'Baud rate config, interrupt RX, ring buffer, and serial debugging.', time: '35 min', level: 'Intermediate', icon: FiRadio, image: '/vlsi 2.jpg' },
-      { title: 'I2C: Sensors & OLED Displays', desc: 'Address scan, MPU6050 IMU and SSD1306 OLED with hardware I2C.', time: '40 min', level: 'Intermediate', icon: FiGlobe, image: '/iot2.jpg' },
+      { title: 'UART: Complete Guide', desc: 'Baud rate config, interrupt RX, ring buffer, and serial debugging.', time: '35 min', level: 'Intermediate', icon: FiRadio, image: '/vlsi 2.jpg', slug: 'uart-from-config-to-circular-buffers' },
+      { title: 'I2C: Sensors & OLED Displays', desc: 'Address scan, MPU6050 IMU and SSD1306 OLED with hardware I2C.', time: '40 min', level: 'Intermediate', icon: FiGlobe, image: '/iot2.jpg', slug: 'i2c-sensors-oled-displays' },
+      { title: 'SPI: High-Speed Communication', desc: 'SPI configuration, DMA transfers, and interfacing with flash memory and displays.', time: '35 min', level: 'Intermediate', icon: FiLayers, image: '/vlsi1.jpeg', slug: 'spi-high-speed-communication' },
+      { title: 'CAN Bus: Automotive Networks', desc: 'CAN protocol, message filtering, and vehicle network communication.', time: '45 min', level: 'Advanced', icon: FiDownload, image: '/iot.jpeg', slug: 'can-bus-automotive-networks' },
+      { title: 'USB Device Mode', desc: 'CDC, HID, and custom USB device class implementation on STM32.', time: '50 min', level: 'Advanced', icon: FiCpu, image: '/iot3.jpg', slug: 'usb-device-mode' },
+      { title: 'Bluetooth LE: BLE Projects', desc: 'BLE advertising, GATT services, and connecting with mobile apps.', time: '55 min', level: 'Advanced', icon: FiTarget, image: '/vlsi 2.jpeg', slug: 'bluetooth-le-ble-projects' },
+      { title: 'One-Wire Protocol', desc: 'DS18B20 temperature sensor and custom One-Wire device interfacing.', time: '30 min', level: 'Intermediate', icon: FiSettings, image: '/vlsi 2.jpg', slug: 'one-wire-protocol' },
+      { title: 'I2S: Audio Interface', desc: 'I2S configuration for audio codecs, microphones, and digital audio.', time: '40 min', level: 'Advanced', icon: FiGlobe, image: '/iot2.jpg', slug: 'i2s-audio-interface' },
+      { title: 'Ethernet: lwIP Stack', desc: 'TCP/IP implementation, socket programming, and web server basics.', time: '60 min', level: 'Advanced', icon: FiLayers, image: '/iot.jpeg', slug: 'ethernet-lwip-stack' },
+      { title: 'UART DMA Optimization', desc: 'Using DMA for high-speed UART without CPU overhead.', time: '35 min', level: 'Intermediate', icon: FiRadio, image: '/vlsi1.jpeg', slug: 'uart-dma-optimization' },
+      { title: 'SPI DMA Transfers', desc: 'Double buffering, DMA interrupts, and continuous SPI transfers.', time: '40 min', level: 'Advanced', icon: FiDownload, image: '/iot3.jpg', slug: 'spi-dma-transfers' },
+      { title: 'I2C Error Handling', desc: 'Bus arbitration, clock stretching, and recovering from errors.', time: '30 min', level: 'Intermediate', icon: FiTarget, image: '/vlsi 2.jpeg', slug: 'i2c-error-handling' },
+      { title: 'Modbus RTU Protocol', desc: 'Modbus serial communication for industrial applications.', time: '45 min', level: 'Intermediate', icon: FiCpu, image: '/iot.jpeg', slug: 'modbus-rtu-protocol' },
+      { title: 'Wireless Communication', desc: 'RF modules, packet structure, and wireless sensor networks.', time: '50 min', level: 'Intermediate', icon: FiGlobe, image: '/iot2.jpg', slug: 'wireless-communication' },
+      { title: 'IR Remote Control', desc: 'NEC protocol, IR decoding, and creating IR remotes.', time: '30 min', level: 'Beginner', icon: FiSettings, image: '/vlsi1.jpeg', slug: 'ir-remote-control' },
     ],
     rtos: [
-      { title: 'FreeRTOS: Tasks & Scheduling', desc: 'Create tasks, understand preemptive scheduling, priorities, and the tick timer.', time: '50 min', level: 'Advanced', icon: FiLayers, image: '/iot.jpeg' },
-      { title: 'FreeRTOS: Queues & Semaphores', desc: 'Inter-task communication via queues, binary semaphores, mutexes, and event groups.', time: '55 min', level: 'Advanced', icon: FiDownload, image: '/iot3.jpg' },
+      { title: 'FreeRTOS: Tasks & Scheduling', desc: 'Create tasks, understand preemptive scheduling, priorities, and the tick timer.', time: '50 min', level: 'Advanced', icon: FiLayers, image: '/iot.jpeg', slug: 'freertos-tasks-scheduling' },
+      { title: 'FreeRTOS: Queues & Semaphores', desc: 'Inter-task communication via queues, binary semaphores, mutexes, and event groups.', time: '55 min', level: 'Advanced', icon: FiDownload, image: '/iot3.jpg', slug: 'freertos-queues-semaphores' },
+      { title: 'FreeRTOS: Memory Management', desc: 'Heap allocation, memory pools, and dynamic task creation strategies.', time: '40 min', level: 'Advanced', icon: FiCpu, image: '/vlsi 2.jpg', slug: 'freertos-memory-management' },
+      { title: 'FreeRTOS: Interrupt Management', desc: 'Deferring interrupt handling to tasks, binary semaphores in ISRs.', time: '35 min', level: 'Advanced', icon: FiTarget, image: '/iot2.jpg', slug: 'freertos-interrupt-management' },
+      { title: 'FreeRTOS: Software Timers', desc: 'Software timer creation, callback functions, and timer service tasks.', time: '30 min', level: 'Advanced', icon: FiClock, image: '/vlsi1.jpeg', slug: 'freertos-software-timers' },
+      { title: 'FreeRTOS: Debugging & Profiling', desc: 'Tracealyzer integration, stack overflow detection, and performance tuning.', time: '45 min', level: 'Advanced', icon: FiSettings, image: '/vlsi 2.jpeg', slug: 'freertos-debugging-profiling' },
+      { title: 'FreeRTOS: Task Notifications', desc: 'Direct to task notifications, efficient signaling without queues.', time: '35 min', level: 'Advanced', icon: FiLayers, image: '/iot.jpeg', slug: 'freertos-task-notifications' },
+      { title: 'FreeRTOS: Event Groups', desc: 'Event group creation, set/clear/wait operations for synchronization.', time: '40 min', level: 'Advanced', icon: FiDownload, image: '/iot2.jpg', slug: 'freertos-event-groups' },
+      { title: 'FreeRTOS: Stream Buffers', desc: 'Stream buffers for passing data between tasks efficiently.', time: '35 min', level: 'Advanced', icon: FiCpu, image: '/vlsi1.jpeg', slug: 'freertos-stream-buffers' },
+      { title: 'FreeRTOS: Message Buffers', desc: 'Variable length message passing between tasks.', time: '30 min', level: 'Advanced', icon: FiTarget, image: '/iot3.jpg', slug: 'freertos-message-buffers' },
+      { title: 'FreeRTOS: Tickless Idle Mode', desc: 'Implementing low power tickless mode for battery applications.', time: '45 min', level: 'Advanced', icon: FiGlobe, image: '/vlsi 2.jpeg', slug: 'freertos-tickless-idle' },
+      { title: 'FreeRTOS: MPU Protection', desc: 'Memory Protection Unit configuration for secure task isolation.', time: '50 min', level: 'Advanced', icon: FiSettings, image: '/iot.jpeg', slug: 'freertos-mpu-protection' },
+      { title: 'FreeRTOS: Porting Guide', desc: 'Porting FreeRTOS to new architectures and custom MCUs.', time: '60 min', level: 'Advanced', icon: FiLayers, image: '/iot2.jpg', slug: 'freertos-porting-guide' },
+      { title: 'FreeRTOS: Tick Hook Functions', desc: 'Tick hook, idle hook, and runtime statistics collection.', time: '35 min', level: 'Advanced', icon: FiDownload, image: '/vlsi 2.jpg', slug: 'freertos-tick-hook' },
+      { title: 'FreeRTOS: Priority Inversion', desc: 'Understanding and solving priority inversion problems with mutexes.', time: '40 min', level: 'Advanced', icon: FiCpu, image: '/iot3.jpg', slug: 'freertos-priority-inversion' },
     ],
   }
 
@@ -87,8 +139,7 @@ function Tutorials() {
         <div className="max-w-[1400px] mx-auto px-8">
           {/* Tab Navigation */}
           <div className="flex flex-wrap gap-2 mb-12 pb-6 border-b border-gray-200">
-            {[{ id: 'all', label: 'All Tutorials' },
-              { id: 'c', label: 'Embedded C' },
+            {[{ id: 'c', label: 'Embedded C' },
               { id: 'basics', label: 'MCU Basics' },
               { id: 'proto', label: 'Protocols' },
               { id: 'rtos', label: 'RTOS' },
@@ -112,7 +163,7 @@ function Tutorials() {
           {/* Tutorial Cards */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {tutorials[activeTab].map((tut, i) => (
-              <Link href="/tutorials" key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 no-underline">
+              <Link href={`/tutorials/${tut.slug}`} key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 no-underline">
                 <div className=" bg-gradient-to-br from-primary-50 to-primary-100 shadow-sm flex items-center justify-center overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>

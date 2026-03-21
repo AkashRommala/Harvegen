@@ -26,9 +26,9 @@ const toast = (msg, type = 'info') => {
 function Home() {
 
   const projects = [
-    { title: 'Smart Irrigation System', desc: 'Automated soil-moisture irrigation system using ADC sensors on STM32F407. Features real-time monitoring, automatic pump control, and mobile app notifications.', tags: ['Medium', 'STM32', 'IoT'], icon: FiZap, color: 'bg-emerald-900', image: '/iot.jpeg' },
-    { title: 'Driver Drowsiness Detection', desc: 'Advanced IR sensor-based eye-blink pattern recognition system on NXP LPC1768 ARM Cortex-M3. Uses machine learning algorithms for accurate detection.', tags: ['Advanced', 'LPC1768'], icon: FiZap, color: 'bg-red-900', image: '/vlsi1.jpeg' },
-    { title: 'IoT Weather Station', desc: 'Complete weather monitoring solution with DHT22 temperature/humidity and BMP280 pressure sensors. Data uploaded via ESP8266 to Blynk dashboard.', tags: ['Beginner', 'Arduino', 'IoT'], icon: FiGlobe, color: 'bg-slate-800', image: '/iot2.jpg' },
+    { title: 'Smart Irrigation System', desc: 'Automated soil-moisture irrigation system using ADC sensors on STM32F407. Features real-time monitoring, automatic pump control, and mobile app notifications.', fullDesc: 'This project implements a smart irrigation system that automatically waters plants based on soil moisture levels. Uses STM32F407 microcontroller with ADC channels to read soil moisture sensors. Features include automatic pump control, LCD display, and Blynk IoT platform integration for remote monitoring and control via mobile app.', tags: ['Medium', 'STM32', 'IoT'], icon: FiZap, color: 'bg-emerald-900', image: '/iot.jpeg' },
+    { title: 'Driver Drowsiness Detection', desc: 'Advanced IR sensor-based eye-blink pattern recognition system on NXP LPC1768 ARM Cortex-M3. Uses machine learning algorithms for accurate detection.', fullDesc: 'A driver safety system that detects drowsiness by monitoring eye blink patterns using IR sensors. Built on NXP LPC1768 with advanced ML algorithms for accurate detection. Includes alert system with buzzer and LED warnings when fatigue is detected.', tags: ['Advanced', 'LPC1768'], icon: FiZap, color: 'bg-red-900', image: '/vlsi1.jpeg' },
+    { title: 'IoT Weather Station', desc: 'Complete weather monitoring solution with DHT22 temperature/humidity and BMP280 pressure sensors. Data uploaded via ESP8266 to Blynk dashboard.', fullDesc: 'A comprehensive weather monitoring station that measures temperature, humidity, and atmospheric pressure. Uses DHT22 and BMP280 sensors with ESP8266 WiFi module to upload data to Blynk IoT dashboard. Features historical data logging and mobile app access.', tags: ['Beginner', 'Arduino', 'IoT'], icon: FiGlobe, color: 'bg-slate-800', image: '/iot2.jpg' },
   ]
 
   const tutorials = [
@@ -61,9 +61,9 @@ function Home() {
       </div> */}
 
       {/* Featured Projects */}
-      <section className="py-15 bg-gradient-to-br from-gray-50 to-slate-50">
+      <section className="py-10 bg-gradient-to-br from-gray-50 to-slate-50">
         <div className="max-w-[1400px] mx-auto px-8">
-          <div className="flex justify-between items-end mb-16">
+          <div className="flex justify-between items-end mb-12">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-3 mb-4 font-semibold text-sm tracking-widest uppercase text-primary-600">
                 <span className="w-8 h-px bg-primary-600"></span>
@@ -72,6 +72,7 @@ function Home() {
               <h2 className="text-gray-900 mb-4 text-4xl font-bold">Featured Projects</h2>
               <p className="text-gray-600 text-lg leading-relaxed">Curated projects that build real-world embedded systems skills from the ground up.</p>
             </div>
+            <Link href="/projects" className="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg text-sm font-semibold hover:border-gray-300 hover:text-gray-900 hover:shadow-lg transition-all shadow-md">All Projects →</Link>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -93,6 +94,7 @@ function Home() {
                     ))}
                   </div>
                   <h3 className="font-bold text-lg text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">{proj.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{proj.fullDesc}</p>
                 </div>
                 <div className="p-6 flex justify-between items-center border-t border-gray-100 bg-gray-50/50">
                   <span className="text-xs text-gray-500 font-medium">{proj.tags[1] || proj.tags[0]}</span>
@@ -101,20 +103,13 @@ function Home() {
               </article>
             ))}
           </div>
-
-          {/* All Projects Button */}
-          <div className="mt-6 mb-4 flex justify-end">
-            <Button href="/projects" variant="secondary" size="md" className="bg-white text-primary-600 hover:bg-gray-100 shadow-lg hover:shadow-xl px-4 py-2 text-base md:text-lg">
-              All Projects →
-            </Button>
-          </div>
         </div>
       </section>
 
       {/* Latest Tutorials */}
-      <section className="py-15 bg-gradient-to-br from-white to-slate-50">
+      <section className="py-10 bg-gradient-to-br from-white to-slate-50">
         <div className="max-w-[1400px] mx-auto px-8">
-          <div className="flex justify-between items-end mb-16">
+          <div className="flex justify-between items-end mb-12">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-3 mb-4 font-semibold text-sm tracking-widest uppercase text-primary-600">
                 <span className="w-8 h-px bg-primary-600"></span>
@@ -146,10 +141,13 @@ function Home() {
                   </div>
                   <h3 className="font-bold text-base text-gray-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">{tut.title}</h3>
                   <p className="text-gray-600 text-sm line-clamp-2 mb-3 leading-relaxed">{tut.desc}</p>
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <span className="text-[#1e3a8a] font-bold">⏱</span> {tut.time}
-                    </span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <span className="flex items-center gap-1">
+                        <span className="text-[#1e3a8a] font-bold">⏱</span> {tut.time}
+                      </span>
+                    </div>
+                    <Button variant="default" size="sm" className="shadow-md hover:shadow-lg">View Course</Button>
                   </div>
                 </div>
               </Link>
@@ -159,9 +157,9 @@ function Home() {
       </section>
 
       {/* MCU Platforms */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 to-white">
+      <section className="py-10 bg-gradient-to-br from-slate-50 to-white">
         <div className="max-w-[1400px] mx-auto px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-3 mb-4 font-semibold text-sm tracking-widest uppercase text-primary-600 justify-center">
               <span className="w-8 h-px bg-primary-600"></span>
               Platforms
@@ -171,30 +169,71 @@ function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[{ name: 'LPC1768', desc: 'NXP ARM Cortex-M3 running at 100 MHz. The academic standard for learning bare-metal register-level programming with comprehensive peripheral support including ADC, UART, SPI, I2C, PWM, and timers.', projects: 12, tutorials: 18, icon: FiCpu, tags: ['ARM', 'Cortex-M3', 'Academic'] },
-              { name: 'STM32', desc: 'ST Microelectronics ARM Cortex-M4 processor with DSP instructions and FPU. Running up to 168 MHz with industry-standard HAL/LL libraries. Perfect for advanced embedded applications.', projects: 18, tutorials: 25, icon: FiCpu, tags: ['ARM', 'Cortex-M4', 'Industry'] },
-              { name: 'Arduino', desc: 'ATmega-based prototyping platform. Beginner-friendly with massive library ecosystem and thousands of available shields. Ideal for rapid prototyping and IoT projects.', projects: 15, tutorials: 20, icon: FiCpu, tags: ['ATmega', 'Beginner', 'Popular'] },
+            {[{ name: 'LPC1768', desc: 'NXP ARM Cortex-M3 running at 100 MHz. The academic standard for learning bare-metal register-level programming with comprehensive peripheral support including ADC, UART, SPI, I2C, PWM, and timers.', projects: 12, tutorials: 18, icon: FiCpu, image: '/vlsi 2.jpeg', tags: ['ARM', 'Cortex-M3', 'Academic'] },
+              { name: 'STM32', desc: 'ST Microelectronics ARM Cortex-M4 processor with DSP instructions and FPU. Running up to 168 MHz with industry-standard HAL/LL libraries. Perfect for advanced embedded applications.', projects: 18, tutorials: 25, icon: FiCpu, image: '/iot3.jpg', tags: ['ARM', 'Cortex-M4', 'Industry'] },
+              { name: 'Arduino', desc: 'ATmega-based prototyping platform. Beginner-friendly with massive library ecosystem and thousands of available shields. Ideal for rapid prototyping and IoT projects.', projects: 15, tutorials: 20, icon: FiCpu, image: '/iot2.jpg', tags: ['ATmega', 'Beginner', 'Popular'] },
             ].map((mcu, i) => (
-              <div key={i} className="group bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <mcu.icon className="w-8 h-8 text-primary-600" />
+              <div key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300">
+                <div className="h-[180px] overflow-hidden relative">
+                  <img src={mcu.image} alt={mcu.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
-                <div className="flex gap-2 flex-wrap mb-3">
-                  {mcu.tags.map((tag, j) => (
-                    <span key={j} className="px-3 py-1 rounded-lg text-xs font-bold tracking-wider uppercase bg-[#1e3a8a]/10 text-[#1e3a8a] border border-[#1e3a8a]/20">{tag}</span>
+                <div className="p-6">
+                  <div className="flex gap-2 flex-wrap mb-3">
+                    {mcu.tags.map((tag, j) => (
+                      <span key={j} className="px-3 py-1 rounded-lg text-xs font-bold tracking-wider uppercase bg-[#1e3a8a]/10 text-[#1e3a8a] border border-[#1e3a8a]/20">{tag}</span>
+                    ))}
+                  </div>
+                  <h3 className="font-bold text-xl text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">{mcu.name}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">{mcu.desc}</p>
+                  <Link href="/microcontrollers" className="inline-block px-8 py-4 bg-[#1e3a8a] text-white rounded-xl text-sm font-bold hover:bg-[#1e40af] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">Explore {mcu.name} →</Link>
+                  <div className="flex gap-6 pt-6 mt-6 border-t border-gray-200">
+                    <div className="text-center">
+                      <div className="font-bold text-2xl text-[#1e3a8a]">{mcu.projects}</div>
+                      <div className="text-gray-500 text-xs tracking-wider uppercase font-medium">Projects</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-bold text-2xl text-[#1e3a8a]">{mcu.tutorials}</div>
+                      <div className="text-gray-500 text-xs tracking-wider uppercase font-medium">Tutorials</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-10 bg-gradient-to-br from-white to-slate-50">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 mb-4 font-semibold text-sm tracking-widest uppercase text-primary-600 justify-center">
+              <span className="w-8 h-px bg-primary-600"></span>
+              Testimonials
+            </div>
+            <h2 className="text-gray-900 mb-4 text-4xl font-bold">What Learners Say</h2>
+            <p className="mx-auto text-gray-600 text-lg max-w-[600px] leading-relaxed">Hear from students and professionals who transformed their embedded systems skills.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: 'Rajesh Kumar', role: 'Embedded Engineer', company: 'Tesla', quote: 'The hands-on approach with STM32 and FreeRTOS tutorials helped me land my dream job. The register-level explanations made complex concepts finally click.', image: '/iot.jpeg' },
+              { name: 'Priya Sharma', role: 'Research Scholar', company: 'IIT Delhi', quote: 'The LPC1768 tutorials are exceptional. Going from GPIO basics to building a complete IoT weather station in just 3 months was incredible.', image: '/iot2.jpg' },
+              { name: 'Ahmed Hassan', role: 'Product Designer', company: 'Bosch', quote: 'This platform fills the gap between theory and real-world applications. The project-based learning approach is exactly what the industry needs.', image: '/iot3.jpg' },
+            ].map((testimonial, i) => (
+              <div key={i} className="group bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-2xl hover:border-primary-500 hover:-translate-y-1 transition-all duration-300">
+                <div className="flex items-center gap-1 mb-6">
+                  {[1,2,3,4,5].map((star) => (
+                    <span key={star} className="text-yellow-400 text-xl">★</span>
                   ))}
                 </div>
-                <h3 className="font-bold text-xl text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">{mcu.name}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">{mcu.desc}</p>
-                <Link href="/microcontrollers" className="inline-block px-8 py-4 bg-[#1e3a8a] text-white rounded-xl text-sm font-bold hover:bg-[#1e40af] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">Explore {mcu.name} →</Link>
-                <div className="flex gap-6 pt-6 mt-6 border-t border-gray-200">
-                  <div className="text-center">
-                    <div className="font-bold text-2xl text-[#1e3a8a]">{mcu.projects}</div>
-                    <div className="text-gray-500 text-xs tracking-wider uppercase font-medium">Projects</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-bold text-2xl text-[#1e3a8a]">{mcu.tutorials}</div>
-                    <div className="text-gray-500 text-xs tracking-wider uppercase font-medium">Tutorials</div>
+                <blockquote className="text-gray-600 text-sm leading-relaxed mb-6 italic">"{testimonial.quote}"</blockquote>
+                <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
+                  <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-primary-200" />
+                  <div>
+                    <div className="font-bold text-gray-900">{testimonial.name}</div>
+                    <div className="text-gray-500 text-xs">{testimonial.role} at {testimonial.company}</div>
                   </div>
                 </div>
               </div>
@@ -204,7 +243,7 @@ function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 to-primary-700">
+      <section className="py-12 bg-gradient-to-br from-primary-600 to-primary-700">
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-12 text-center text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent rounded-3xl"></div>

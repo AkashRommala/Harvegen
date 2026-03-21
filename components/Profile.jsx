@@ -1,16 +1,21 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { FiUser, FiMail, FiCalendar, FiAward, FiBook, FiZap, FiCpu, FiCheckCircle, FiClock, FiDownload, FiEdit2, FiTrendingUp, FiTarget, FiStar, FiArrowRight } from 'react-icons/fi'
+import { FiUser, FiMail, FiCalendar, FiAward, FiBook, FiZap, FiCpu, FiCheckCircle, FiClock, FiDownload, FiEdit2, FiTrendingUp, FiTarget, FiStar, FiArrowRight, FiCamera } from 'react-icons/fi'
+import { useUser } from '../context/UserContext'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 
 function Profile() {
+  const { user, updateUser } = useUser()
+  const fileInputRef = useRef(null)
+  const [isUploading, setIsUploading] = useState(false)
+
   const [userStats, setUserStats] = useState({
-    name: 'Embedded Engineer',
-    email: 'engineer@example.com',
+    name: user?.name || 'Embedded Engineer',
+    email: user?.email || 'engineer@example.com',
     joinDate: 'January 2024',
     completedProjects: 12,
     tutorialsCompleted: 8,
@@ -18,8 +23,34 @@ function Profile() {
     currentStreak: 7,
     level: 'Intermediate',
     badges: 15,
-    avatar: null
+    avatar: user?.avatar || null
   })
+
+  // Update userStats when user context changes
+  useEffect(() => {
+    if (user) {
+      setUserStats(prev => ({
+        ...prev,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar
+      }))
+    }
+  }, [user])
+
+  // Handle photo upload
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setIsUploading(true)
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        updateUser({ avatar: reader.result })
+        setIsUploading(false)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   const [progressData, setProgressData] = useState([
     { category: 'STM32', progress: 75, total: 100, color: 'from-blue-400 to-blue-600', icon: FiCpu },
@@ -44,7 +75,7 @@ function Profile() {
   ])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 pb-20 md:pb-10">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 pb-20 md:pb-10 pt-16">
       {/* Profile Header */}
       <div className="relative overflow-hidden bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 text-white">
         {/* Decorative elements */}
@@ -55,16 +86,31 @@ function Profile() {
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
             {/* Avatar with edit button */}
             <div className="relative">
-              <div className="w-28 h-28 md:w-32 md:h-32 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20">
+              <div className="w-28 h-28 md:w-32 md:h-32 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20 overflow-hidden">
                 {userStats.avatar ? (
                   <img src={userStats.avatar} alt="Profile" className="w-full h-full rounded-full object-cover" />
                 ) : (
                   <FiUser className="w-14 h-14 md:w-16 md:h-16 text-white" />
                 )}
+                {isUploading && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
               </div>
-              <button className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary-600 shadow-lg hover:scale-110 transition-transform">
-                <FiEdit2 className="w-4 h-4" />
+              <button 
+                onClick={() => fileInputRef.current?.click()}
+                className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary-600 shadow-lg hover:scale-110 transition-transform"
+              >
+                <FiCamera className="w-4 h-4" />
               </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handlePhotoUpload}
+                className="hidden"
+              />
             </div>
             
             {/* User Info */}
