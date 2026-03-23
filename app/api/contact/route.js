@@ -1,18 +1,44 @@
 import { NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
 import fs from 'fs'
 import path from 'path'
 
-// Create a transporter using SMTP
-const transporter = nodemailer.createTransporter({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER || 'your-email@gmail.com',
-    pass: process.env.SMTP_PASS || 'your-app-password'
+// Dynamic require to handle ESM nodemailer
+let nodemailer = null
+try {
+  nodemailer = require('nodemailer')
+} catch (e) {
+  console.error('Failed to load nodemailer:', e.message)
+}
+
+// Create transporter - handle both CommonJS and ESM exports
+const createTransporter = () => {
+  if (!nodemailer) {
+    throw new Error('Nodemailer not loaded')
   }
-})
+  // Handle both CommonJS (nodemailer.createTransport) and ESM (nodemailer.default?.createTransport)
+  const createFn = nodemailer.createTransport || nodemailer.default?.createTransport
+  if (!createFn) {
+    throw new Error('createTransport not found in nodemailer')
+  }
+  return createFn({
+    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.SMTP_PORT || '587'),
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER || 'your-email@gmail.com',
+      pass: process.env.SMTP_PASS || 'your-app-password'
+    }
+  })
+}
+
+// Create transporter lazily to ensure env vars are loaded
+let transporter = null
+const getTransporter = () => {
+  if (!transporter) {
+    transporter = createTransporter()
+  }
+  return transporter
+}
 
 // CSV file path
 const dataDir = path.join(process.cwd(), 'data')
@@ -67,7 +93,7 @@ export async function POST(request) {
       html: adminHtml
     }
 
-    await transporter.sendMail(adminMailOptions)
+    await getTransporter().sendMail(adminMailOptions)
 
     // Send confirmation email to user
     const userHtml = `
@@ -91,7 +117,7 @@ export async function POST(request) {
       html: userHtml
     }
 
-    await transporter.sendMail(userMailOptions)
+    await getTransporter().sendMail(userMailOptions)
 
     return NextResponse.json({ 
       success: true, 
