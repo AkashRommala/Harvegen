@@ -9,25 +9,46 @@ import { Button } from './ui/button'
 function About() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Toast helper
-    const toast = (msg, type = 'info') => {
-      let el = document.getElementById('toast')
-      if (!el) {
-        el = document.createElement('div')
-        el.id = 'toast'
-        document.body.appendChild(el)
-      }
-      const icons = { info: '', success: '', warn: '', error: '' }
-      el.innerHTML = `${icons[type] || icons.info} <span>${msg}</span>`
-      el.classList.add('show')
-      clearTimeout(el._t)
-      el._t = setTimeout(() => el.classList.remove('show'), 3200)
-    }
     
-    toast("Message sent! We'll reply soon.", 'success')
-    setFormData({ name: '', email: '', subject: '', message: '' })
+    try {
+      // Send contact form via API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+      
+      if (result.success) {
+        // Toast helper
+        const toast = (msg, type = 'info') => {
+          let el = document.getElementById('toast')
+          if (!el) {
+            el = document.createElement('div')
+            el.id = 'toast'
+            document.body.appendChild(el)
+          }
+          const icons = { info: '', success: '', warn: '', error: '' }
+          el.innerHTML = `${icons[type] || icons.info} <span>${msg}</span>`
+          el.classList.add('show')
+          clearTimeout(el._t)
+          el._t = setTimeout(() => el.classList.remove('show'), 3200)
+        }
+        
+        toast("Message sent! We'll reply soon.", 'success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        throw new Error(result.error || 'Failed to send message')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('There was an error submitting your message. Please try again.')
+    }
   }
 
   return (

@@ -49,3 +49,6 @@ dist-ssr
 
 # OS
 Thumbs.db
+
+# Data files (generated at runtime)
+data/
